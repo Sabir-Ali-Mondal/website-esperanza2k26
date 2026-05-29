@@ -77,6 +77,7 @@
     "tabler": "^1.0.0",
     "tailwind-merge": "^3.0.2",
     "three": "^0.175.0",
+    "xlsx": "^0.18.5",
     "zod": "^3.24.2"
   },
   "devDependencies": {
