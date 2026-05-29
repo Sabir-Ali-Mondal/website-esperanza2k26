@@ -260,6 +260,7 @@ npm run dev           # Start dev server with Turbopack
 npm run build         # Build for production
 npm start             # Start production server
 npm run lint          # Run ESLint
+npm run seed:admin
 npm run seed:events   # Seed initial events into DB
 npm run seed:events:force  # Seed events and overwrite existing
 ```
