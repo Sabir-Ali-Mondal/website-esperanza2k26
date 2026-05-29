@@ -1,70 +1,123 @@
-# Esperanza_2k26
-This repository contains the source code for the official website of Esperanza 2k26, CGEC's annual technical extravaganza. Developed using frameworks like React and Next.js, the website serves as a central platform for event details, registrations, schedules, and real-time updates,  designed to provide a seamless and efficient user experience.
+# Esperanza 2k26 - Official Website
 
-# Esperanza 2k26 - Official Website Repository
+<p align="center">
+  <img src="https://coresg-normal.trae.ai/api/v1/text-to-image?prompt=Esperanza%202k26%20official%20website%20logo%20red%20and%20black%20gradient%20event%20management&image_size=square_hd" alt="Esperanza Logo" width="200"/>
+</p>
 
-## 📌 Overview
-This repository contains the source code for the official website of *Esperanza 2k26*, our college's annual technical extravaganza. The website is developed using **React** and **Next.js**, ensuring a modern, fast, and dynamic user experience. It serves as a central platform for event details, registrations, schedules, and real-time updates.
+<p align="center">
+  <i>The official website for CGEC's annual technical extravaganza</i>
+</p>
 
-## 🚀 Tech Stack
-- **Frontend:** React.js, Next.js
-- **Styling:** Tailwind CSS / CSS Modules
-- **Backend:** (If applicable, specify the backend stack)
-- **Database:** (If applicable, specify the database used)
-- **Hosting:** (Specify if using Vercel, Netlify, or another platform)
+---
 
-## 🎯 Features
-- Event details and schedules
-- Online registration system
-- Real-time updates
-- Responsive design for all devices
-- Interactive UI/UX
+## Table of Contents
 
-## 🔧 Installation & Setup
-To set up the project locally, follow these steps:
+1. Overview
+2. Tech Stack
+3. Features
+4. Quick Start
+5. Contributing
+6. License
+7. Contact
 
-1. Clone the repository:
+---
+
+## Overview
+
+This repository contains the source code for Esperanza 2k26, the annual technical festival of Coochbehar Government Engineering College. The website serves as a complete platform for event management, registrations, schedules, and real-time updates.
+
+---
+
+## Tech Stack
+
+| Component | Technology |
+|-----------|------------|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript |
+| Database | MongoDB + Mongoose ODM |
+| Authentication | NextAuth v5 (Auth.js) |
+| Styling | Tailwind CSS |
+| UI Components | shadcn/ui + Radix UI |
+| Form Handling | React Hook Form + Zod |
+| Alerts | SweetAlert2 (Custom Themed) |
+| Hosting | Vercel-Ready |
+
+---
+
+## Features
+
+- User Management: Sign up, login, and profile management
+- Event System: Browse technical and cultural events with detailed information
+- Registration: Individual and team-based event registrations
+- Team Management: Create, join, and manage teams for events
+- Responsive Design: Works seamlessly across all devices
+- Admin Panel: Complete admin dashboard for managing events, users, etc.
+- Cloudinary Integration: Profile photo uploads with animated UI
+
+---
+
+## Quick Start
+
+For detailed setup instructions, check SETUP_GUIDE.md.
+
+### Prerequisites
+
+- Node.js ≥ 18
+- MongoDB (local or Atlas)
+
+### Installation Steps
+
+1. Clone & Navigate:
    ```bash
-   git clone https://github.com/your-repo-link.git
+   git clone <repo-url>
    cd Esperanza_2k25
    ```
-2. Install dependencies:
+
+2. Install Dependencies:
    ```bash
    npm install
    ```
-3. Start the development server:
+
+3. Environment Configuration:
+   Create `.env.local` in root:
+   ```env
+   MONGO_URI=mongodb://localhost:27017
+   DB_NAME=esperanza2k26
+   AUTH_SECRET=your_auth_secret
+   NEXTAUTH_URL=http://localhost:3000
+   ```
+
+4. Run Development Server:
    ```bash
    npm run dev
    ```
-4. Open the project in your browser at `http://localhost:3000`
-
-## 🛠 Contribution Guidelines
-We welcome contributions! Follow these steps to contribute:
-
-1. Fork the repository.
-2. Create a new branch:
-   ```bash
-   git checkout -b feature-branch
-   ```
-3. Make your changes and commit:
-   ```bash
-   git commit -m "Add new feature"
-   ```
-4. Push to your fork:
-   ```bash
-   git push origin feature-branch
-   ```
-5. Open a Pull Request for review.
-
-## 📜 License
-(Include the license if applicable, e.g., MIT License)
-
-## 📬 Contact
-For any queries or collaborations, feel free to reach out:
-- **Email:** [Your Email Here]
-- **Website:** [Official Event Website (if live)]
-- **GitHub Issues:** Open an issue for feature requests or bug reports.
+   Open http://localhost:3000
 
 ---
-Made with ❤️ for *Esperanza 2k26* 🚀
 
+## Contributing
+
+We welcome contributions! Here's how you can help:
+
+1. Fork this repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## License
+
+Distributed under the MIT License. See LICENSE for more information.
+
+---
+
+## Contact
+
+- Email: your-email@example.com
+- GitHub Issues: Create Issue
+
+---
+
+<p align="center">Made with ❤ for CGEC Esperanza</p>

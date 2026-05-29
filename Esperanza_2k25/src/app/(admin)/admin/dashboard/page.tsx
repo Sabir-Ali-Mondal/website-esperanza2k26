@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, Calendar, UserRound, MessageSquare, UsersRound, Settings } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Users, Calendar, UserRound, MessageSquare, UsersRound, Settings, Home, User } from "lucide-react";
 import { getDashboardStats } from "@/actions/admin/dashboard.action";
 
 interface DashboardStats {
@@ -64,7 +66,7 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
         Dashboard
       </h1>
@@ -94,6 +96,21 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
         ))}
+      </div>
+      
+      <div className="flex flex-wrap gap-4">
+        <Button asChild className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-lg hover:shadow-xl transition-all duration-300 py-6">
+          <Link href="/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+            <Home className="h-6 w-6" />
+            <span className="text-lg font-semibold">Go to Home</span>
+          </Link>
+        </Button>
+        <Button asChild className="flex-1 bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 shadow-lg hover:shadow-xl transition-all duration-300 py-6">
+          <Link href="/profile" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+            <User className="h-6 w-6" />
+            <span className="text-lg font-semibold">View Profile</span>
+          </Link>
+        </Button>
       </div>
     </div>
   );

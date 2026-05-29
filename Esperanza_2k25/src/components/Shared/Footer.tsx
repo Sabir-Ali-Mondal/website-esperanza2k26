@@ -155,7 +155,7 @@ const Footer = () => {
         <div>
           Made With {" "}
           <span className="text-red-500">&#x2764;</span>
-          {" "} by Next JS
+          {" "} for CGEC
         </div>
         <div>
           Esperanza 2k26 | All Right Reserved 
