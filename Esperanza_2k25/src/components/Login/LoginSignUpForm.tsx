@@ -42,7 +42,7 @@ const LoginSignUpForm = () => {
       {loginTabActive ? (
         <LoginForm onForgotPassword={() => setIsForgotPassword(true)} />
       ) : (
-        <SignUpForm />
+        <SignUpForm onSignUpSuccess={() => SetLoginTabActive(true)} />
       )}
     </>
   );
@@ -141,8 +141,9 @@ const LoginForm = ({ onForgotPassword }: { onForgotPassword: () => void }) => {
   );
 };
 
-const SignUpForm = () => {
+const SignUpForm = ({ onSignUpSuccess }: { onSignUpSuccess: () => void }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
 
   const [signUpCredentials, setSignUpCredentials] = useState<SignUpFormPayload>(
     {
@@ -189,6 +190,9 @@ const SignUpForm = () => {
               phoneNumber: "",
             },
           });
+          onSignUpSuccess();
+          router.push("/login");
+          router.refresh();
         });
     } else {
       customSwal.fire({

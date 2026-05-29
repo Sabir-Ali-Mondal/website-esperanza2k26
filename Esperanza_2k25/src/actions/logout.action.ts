@@ -7,7 +7,6 @@ const logout = async () => {
   try {
     await signOut({
       redirect : false,
-      redirectTo : "/"
     });
     
     revalidatePath("/", "layout");

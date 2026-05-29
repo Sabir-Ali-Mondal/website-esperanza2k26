@@ -17,6 +17,7 @@ import {
   Hexagon,
   ChevronLeft,
   ChevronRight,
+  ClipboardList,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -43,6 +44,11 @@ const sidebarItems = [
     title: "Events",
     href: "/admin/events",
     icon: Calendar,
+  },
+  {
+    title: "Participants",
+    href: "/admin/participants",
+    icon: ClipboardList,
   },
   {
     title: "Messages",
@@ -77,13 +83,13 @@ export default function AdminLayout({
         alt="Background"
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20 z-0 pointer-events-none"
       />
-      
+
       <div className="relative z-10 flex h-screen">
         <aside
           className={`fixed inset-y-0 left-0 z-50 bg-gray-900/95 border-r border-gray-700 backdrop-blur-sm transition-all duration-300 ease-in-out ${
             sidebarCollapsed ? "w-16" : "w-56"
           } ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
-          style={{ touchAction: 'manipulation' }}
+          style={{ touchAction: "manipulation" }}
         >
           <div className="flex h-14 items-center justify-between px-3 border-b border-gray-700">
             {!sidebarCollapsed && (
@@ -94,7 +100,9 @@ export default function AdminLayout({
                 </span>
               </div>
             )}
-            {sidebarCollapsed && <Hexagon className="h-5 w-5 text-red-500 mx-auto" />}
+            {sidebarCollapsed && (
+              <Hexagon className="h-5 w-5 text-red-500 mx-auto" />
+            )}
             <Button
               variant="ghost"
               size="icon"
@@ -130,7 +138,9 @@ export default function AdminLayout({
             {!sidebarCollapsed && (
               <div className="flex items-center gap-2 mb-2">
                 <Avatar className="h-8 w-8">
-                  {session?.user?.image && <AvatarImage src={session?.user?.image} />}
+                  {session?.user?.image && (
+                    <AvatarImage src={session?.user?.image} />
+                  )}
                   <AvatarFallback className="bg-red-600">
                     {session?.user?.name?.charAt(0) || "A"}
                   </AvatarFallback>
@@ -159,7 +169,11 @@ export default function AdminLayout({
                 <Button
                   variant="destructive"
                   className="flex-1 h-8 text-xs"
-                  onClick={() => signOut()}
+                  onClick={() =>
+                    signOut({
+                      callbackUrl: `${window.location.origin}/login`,
+                    })
+                  }
                 >
                   <LogOut className="h-3.5 w-3.5 mr-1.5" />
                   Sign Out
@@ -170,7 +184,11 @@ export default function AdminLayout({
                   variant="ghost"
                   size="icon"
                   className="w-full text-white h-8"
-                  onClick={() => signOut()}
+                  onClick={() =>
+                    signOut({
+                      callbackUrl: `${window.location.origin}/login`,
+                    })
+                  }
                 >
                   <LogOut className="h-3.5 w-3.5" />
                 </Button>
@@ -181,13 +199,19 @@ export default function AdminLayout({
                 className="text-white hidden lg:flex h-8"
                 onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
               >
-                {sidebarCollapsed ? <ChevronRight className="h-3.5 w-3.5" /> : <ChevronLeft className="h-3.5 w-3.5" />}
+                {sidebarCollapsed ? (
+                  <ChevronRight className="h-3.5 w-3.5" />
+                ) : (
+                  <ChevronLeft className="h-3.5 w-3.5" />
+                )}
               </Button>
             </div>
           </div>
         </aside>
 
-        <div className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ${sidebarCollapsed ? "lg:ml-16" : "lg:ml-56"} h-full`}>
+        <div
+          className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ${sidebarCollapsed ? "lg:ml-16" : "lg:ml-56"} h-full`}
+        >
           <header className="h-14 border-b border-gray-700 bg-gray-900/50 backdrop-blur-sm flex items-center justify-between px-3">
             <Button
               variant="ghost"
@@ -212,11 +236,9 @@ export default function AdminLayout({
           onClick={() => setSidebarOpen(false)}
         />
       )}
-      
+
       {sidebarOpen && (
-        <aside
-          className="fixed inset-y-0 left-0 z-[60] bg-gray-900/95 border-r border-gray-700 backdrop-blur-sm w-56"
-        >
+        <aside className="fixed inset-y-0 left-0 z-[60] bg-gray-900/95 border-r border-gray-700 backdrop-blur-sm w-56">
           <div className="flex h-14 items-center justify-between px-3 border-b border-gray-700">
             <div className="flex items-center gap-2">
               <Hexagon className="h-5 w-5 text-red-500" />
@@ -258,7 +280,9 @@ export default function AdminLayout({
           <div className="absolute bottom-0 left-0 right-0 p-2 border-t border-gray-700">
             <div className="flex items-center gap-2 mb-2">
               <Avatar className="h-8 w-8">
-                {session?.user?.image && <AvatarImage src={session?.user?.image} />}
+                {session?.user?.image && (
+                  <AvatarImage src={session?.user?.image} />
+                )}
                 <AvatarFallback className="bg-red-600">
                   {session?.user?.name?.charAt(0) || "A"}
                 </AvatarFallback>
@@ -275,7 +299,9 @@ export default function AdminLayout({
             <Button
               variant="destructive"
               className="w-full h-8 text-xs"
-              onClick={() => signOut()}
+              onClick={() =>
+                signOut({ callbackUrl: `${window.location.origin}/login` })
+              }
             >
               <LogOut className="h-3.5 w-3.5 mr-1.5" />
               Sign Out
