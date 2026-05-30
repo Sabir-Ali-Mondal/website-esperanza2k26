@@ -1,7 +1,7 @@
 # Esperanza 2k26 - Official Website
 
 <p align="center">
-  <img src="https://coresg-normal.trae.ai/api/v1/text-to-image?prompt=Esperanza%202k26%20official%20website%20logo%20red%20and%20black%20gradient%20event%20management&image_size=square_hd" alt="Esperanza Logo" width="200"/>
+  <img src="https://github.com/Sabir-Ali-Mondal/website-esperanza2k26/blob/main/Esperanza_2k25/src/assets/images/espLogo.png?raw=true" width="200"/>
 </p>
 
 <p align="center">
