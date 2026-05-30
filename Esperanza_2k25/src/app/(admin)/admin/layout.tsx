@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import {
   LayoutDashboard,
   Users,
@@ -13,16 +13,18 @@ import {
   UsersRound,
   Menu,
   X,
-  LogOut,
   Hexagon,
   ChevronLeft,
   ChevronRight,
   ClipboardList,
+  LogIn,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
 import RadialBgRed from "@/assets/background/RadialBgRed.png";
+import LogOutButton from "@/components/Profile/LogOutButton";
+import { sedgwick } from "@/utils/fonts";
 
 const sidebarItems = [
   {
@@ -51,6 +53,16 @@ const sidebarItems = [
     icon: ClipboardList,
   },
   {
+    title: "Sponsors",
+    href: "/admin/sponsors",
+    icon: Users,
+  },
+  {
+    title: "Bands",
+    href: "/admin/bands",
+    icon: Calendar,
+  },
+  {
     title: "Messages",
     href: "/admin/messages",
     icon: MessageSquare,
@@ -76,6 +88,8 @@ export default function AdminLayout({
     return <>{children}</>;
   }
 
+  const isAuthorized = session?.user?.role === "admin";
+
   return (
     <div className="h-screen bg-black text-white relative overflow-hidden">
       <Image
@@ -84,7 +98,7 @@ export default function AdminLayout({
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20 z-0 pointer-events-none"
       />
 
-      <div className="relative z-10 flex h-screen">
+      <div className={`relative z-10 flex h-screen ${!isAuthorized ? "blur-sm pointer-events-none" : ""}`}>
         <aside
           className={`fixed inset-y-0 left-0 z-50 bg-gray-900/95 border-r border-gray-700 backdrop-blur-sm transition-all duration-300 ease-in-out ${
             sidebarCollapsed ? "w-16" : "w-56"
@@ -135,77 +149,84 @@ export default function AdminLayout({
           </nav>
 
           <div className="absolute bottom-0 left-0 right-0 p-2 border-t border-gray-700">
-            {!sidebarCollapsed && (
-              <div className="flex items-center gap-2 mb-2">
-                <Avatar className="h-8 w-8">
-                  {session?.user?.image && (
-                    <AvatarImage src={session?.user?.image} />
-                  )}
-                  <AvatarFallback className="bg-red-600">
-                    {session?.user?.name?.charAt(0) || "A"}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-white truncate">
-                    {session?.user?.name}
-                  </p>
-                  <p className="text-xs text-gray-500 truncate">
-                    {session?.user?.email}
-                  </p>
-                </div>
-              </div>
-            )}
-            {sidebarCollapsed && (
-              <div className="flex flex-col items-center gap-2 mb-2">
-                <Avatar className="h-8 w-8">
-                  <AvatarFallback className="bg-red-600">
-                    {session?.user?.name?.charAt(0) || "A"}
-                  </AvatarFallback>
-                </Avatar>
-              </div>
-            )}
-            <div className="flex items-center gap-2">
-              {!sidebarCollapsed && (
-                <Button
-                  variant="destructive"
-                  className="flex-1 h-8 text-xs"
-                  onClick={() =>
-                    signOut({
-                      callbackUrl: `${window.location.origin}/login`,
-                    })
-                  }
-                >
-                  <LogOut className="h-3.5 w-3.5 mr-1.5" />
-                  Sign Out
-                </Button>
-              )}
-              {sidebarCollapsed && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="w-full text-white h-8"
-                  onClick={() =>
-                    signOut({
-                      callbackUrl: `${window.location.origin}/login`,
-                    })
-                  }
-                >
-                  <LogOut className="h-3.5 w-3.5" />
-                </Button>
-              )}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-white hidden lg:flex h-8"
-                onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              >
-                {sidebarCollapsed ? (
-                  <ChevronRight className="h-3.5 w-3.5" />
-                ) : (
-                  <ChevronLeft className="h-3.5 w-3.5" />
+            {session ? (
+              <>
+                {!sidebarCollapsed && (
+                  <div className="flex items-center gap-2 mb-2">
+                    <Avatar className="h-8 w-8">
+                      {session?.user?.image && (
+                        <AvatarImage src={session?.user?.image} />
+                      )}
+                      <AvatarFallback className="bg-red-600">
+                        {session?.user?.name?.charAt(0) || "A"}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-medium text-white truncate">
+                        {session?.user?.name}
+                      </p>
+                      <p className="text-xs text-gray-500 truncate">
+                        {session?.user?.email}
+                      </p>
+                    </div>
+                  </div>
                 )}
-              </Button>
-            </div>
+                {sidebarCollapsed && (
+                  <div className="flex flex-col items-center gap-2 mb-2">
+                    <Avatar className="h-8 w-8">
+                      <AvatarFallback className="bg-red-600">
+                        {session?.user?.name?.charAt(0) || "A"}
+                      </AvatarFallback>
+                    </Avatar>
+                  </div>
+                )}
+                <div className="flex items-center gap-2">
+                  {!sidebarCollapsed && (
+                    <div className="flex-1">
+                      <LogOutButton />
+                    </div>
+                  )}
+                  {sidebarCollapsed && (
+                    <div className="flex-1 flex justify-center">
+                      <LogOutButton />
+                    </div>
+                  )}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-white hidden lg:flex h-8"
+                    onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+                  >
+                    {sidebarCollapsed ? (
+                      <ChevronRight className="h-3.5 w-3.5" />
+                    ) : (
+                      <ChevronLeft className="h-3.5 w-3.5" />
+                    )}
+                  </Button>
+                </div>
+              </>
+            ) : (
+              <div className="flex items-center justify-center gap-2">
+                <Link href="/admin/login" className={`text-white flex items-center hover:text-red-400 cursor-pointer ${sedgwick.className}`}>
+                  <LogIn className="mr-2 h-4 w-4" />
+                  {!sidebarCollapsed && <span>Log In</span>}
+                </Link>
+                {!sidebarCollapsed && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-white hidden lg:flex h-8"
+                    onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+                  >
+                    {sidebarCollapsed ? (
+                      <ChevronRight className="h-3.5 w-3.5" />
+                    ) : (
+                      <ChevronLeft className="h-3.5 w-3.5" />
+                    )}
+                  </Button>
+                )}
+              </div>
+            )}
           </div>
         </aside>
 
@@ -229,6 +250,18 @@ export default function AdminLayout({
           </main>
         </div>
       </div>
+
+      {!isAuthorized && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md">
+          <div className="bg-gray-900 border border-gray-700 rounded-xl p-8 text-center max-w-md">
+            <h2 className="text-2xl font-bold text-white mb-4">Access Denied</h2>
+            <p className="text-gray-400 mb-6">You need to be logged in as an administrator to access this section.</p>
+            <Button asChild className="bg-red-600 hover:bg-red-700">
+              <Link href="/admin/login">Go to Login</Link>
+            </Button>
+          </div>
+        </div>
+      )}
 
       {sidebarOpen && (
         <div
@@ -278,34 +311,34 @@ export default function AdminLayout({
           </nav>
 
           <div className="absolute bottom-0 left-0 right-0 p-2 border-t border-gray-700">
-            <div className="flex items-center gap-2 mb-2">
-              <Avatar className="h-8 w-8">
-                {session?.user?.image && (
-                  <AvatarImage src={session?.user?.image} />
-                )}
-                <AvatarFallback className="bg-red-600">
-                  {session?.user?.name?.charAt(0) || "A"}
-                </AvatarFallback>
-              </Avatar>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium text-white truncate">
-                  {session?.user?.name}
-                </p>
-                <p className="text-xs text-gray-500 truncate">
-                  {session?.user?.email}
-                </p>
-              </div>
-            </div>
-            <Button
-              variant="destructive"
-              className="w-full h-8 text-xs"
-              onClick={() =>
-                signOut({ callbackUrl: `${window.location.origin}/login` })
-              }
-            >
-              <LogOut className="h-3.5 w-3.5 mr-1.5" />
-              Sign Out
-            </Button>
+            {session ? (
+              <>
+                <div className="flex items-center gap-2 mb-2">
+                  <Avatar className="h-8 w-8">
+                    {session?.user?.image && (
+                      <AvatarImage src={session?.user?.image} />
+                    )}
+                    <AvatarFallback className="bg-red-600">
+                      {session?.user?.name?.charAt(0) || "A"}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-medium text-white truncate">
+                      {session?.user?.name}
+                    </p>
+                    <p className="text-xs text-gray-500 truncate">
+                      {session?.user?.email}
+                    </p>
+                  </div>
+                </div>
+                <LogOutButton />
+              </>
+            ) : (
+              <Link href="/admin/login" className={`text-white flex items-center justify-center hover:text-red-400 cursor-pointer ${sedgwick.className}`}>
+                <LogIn className="mr-2 h-4 w-4" />
+                <span>Log In</span>
+              </Link>
+            )}
           </div>
         </aside>
       )}

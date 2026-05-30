@@ -33,12 +33,12 @@ const Developers = () => {
         <h1
           className={`${sedgwick.className} px-1 text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-center `}
         >
-          UI/UX Developers
+          Full Stack Developers
         </h1>
         <div className="md:h-[80px] md:w-[200px] lg:h-[100px] lg:w-[350px] bg-white"></div>
       </div>
       <Container>
-        <CarouselCompoment developers={developers.filter(d=>d.role==="ui-ux")}/>
+        <CarouselCompoment developers={developers.filter(d=>d.role==="full-stack")}/>
       </Container>
       <div className="flex justify-between items-center">
 
@@ -48,12 +48,12 @@ const Developers = () => {
         <h1
           className={`${sedgwick.className} px-1 text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-center `}
         >
-          Full Stack Developers
+          UI/UX Developers
         </h1>
         <div className="md:h-[80px] md:w-[200px] lg:h-[100px] lg:w-[350px] bg-white"></div>
       </div>
       <Container>
-        <CarouselCompoment developers={developers.filter(d=>d.role==="full-stack")}/>
+        <CarouselCompoment developers={developers.filter(d=>d.role==="ui-ux")}/>
       </Container>
       <div className="flex justify-between items-center">
 

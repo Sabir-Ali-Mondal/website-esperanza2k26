@@ -1,88 +1,77 @@
 "use server";
 
-import { Event } from "@/interfaces/events.interface";
-import { User as UserType } from "@/interfaces/user.interface";
+import { connectDB } from "@/utils/db/connect";
 import { Events } from "@/models/events.model";
 import { User } from "@/models/user.model";
-import { connectDB } from "@/utils/db/connect";
-import { revalidatePath, revalidateTag } from "next/cache";
+import Sponsor from "@/models/sponsor.model";
+import Band from "@/models/band.model";
 
-const serializeDoc = (doc: any) => {
-  return JSON.parse(JSON.stringify(doc));
-};
-
-const fetchAllEvents = async (eventCategory?: "technical" | "cultural") => {
+export async function fetchAllEvents(category?: "technical" | "cultural") {
   try {
     await connectDB();
-    const events = await Events.find({ eventCategory }).sort({
-      eventDate: 1,
-    });
-    return events.map(serializeDoc) as Event[];
-  } catch (error: any) {
-    console.log("Error fetching events: ", error.message);
-    return null;
+    let query: any = {};
+    if (category) {
+      query.eventCategory = category;
+    }
+    const events = await Events.find(query).sort({ uniqueId: 1 });
+    return JSON.parse(JSON.stringify(events));
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    return [];
   }
-};
+}
 
-const fetchEventByUniqueId = async (uniqueId: number) => {
+export async function fetchEventByUniqueId(uniqueId: number) {
   try {
     await connectDB();
-    const event = await Events.findOne({ uniqueId });
-    return event ? serializeDoc(event) : null;
-  } catch (error: any) {
-    console.log("Error in fetching events: ", error.message);
+    const event = await Events.findOne({ uniqueId }).populate("participants");
+    return JSON.parse(JSON.stringify(event));
+  } catch (error) {
+    console.error("Error fetching event by uniqueId:", error);
     return null;
   }
-};
+}
 
-const fetchUserByEmail = async (email?: string) => {
-  if (!email) {
-    return null;
-  }
+export async function fetchAllSponsors() {
   try {
     await connectDB();
-    const user = await User.findOne({
-      "credentials.email": email,
-    });
-    revalidateTag("user");
-    return user ? serializeDoc(user) : null;
-  } catch (error: any) {
-    console.log("Error fetching user: ", error.message);
-    return null;
+    const sponsors = await Sponsor.find().sort({ createdAt: -1 });
+    return JSON.parse(JSON.stringify(sponsors));
+  } catch (error) {
+    console.error("Error fetching sponsors:", error);
+    return [];
   }
-};
+}
 
-const fetchRegisteredEvents = async (eventsIds: any[]) => {
-  if (!eventsIds?.length) {
-    return null;
-  }
-
+export async function fetchAllBands() {
   try {
-    const events = await Promise.all(
-      eventsIds.map(async (eventId) => {
-        const event = await Events.findById(eventId);
-        if (!event) return null;
-        return {
-          _id: event._id.toString(),
-          uniqueId: event.uniqueId,
-          eventName: event.eventName,
-          eventDescription: event.eventDescription,
-        };
-      })
-    );
+    await connectDB();
+    const bands = await Band.find().sort({ createdAt: -1 });
+    return JSON.parse(JSON.stringify(bands));
+  } catch (error) {
+    console.error("Error fetching bands:", error);
+    return [];
+  }
+}
 
-    // Filter out nulls (if any eventId didn't match)
-    revalidateTag("events");
-    return events.filter((event) => event !== null);
-  } catch (error: any) {
-    console.log("Error fetching registered events: ", error.message);
+export async function fetchUserByEmail(email: string) {
+  try {
+    await connectDB();
+    const user = await User.findOne({ "credentials.email": email });
+    return JSON.parse(JSON.stringify(user));
+  } catch (error) {
+    console.error("Error fetching user by email:", error);
     return null;
   }
-};
+}
 
-export {
-  fetchAllEvents,
-  fetchUserByEmail,
-  fetchRegisteredEvents,
-  fetchEventByUniqueId,
-};
+export async function fetchRegisteredEvents(eventIds: string[]) {
+  try {
+    await connectDB();
+    const events = await Events.find({ _id: { $in: eventIds } });
+    return JSON.parse(JSON.stringify(events));
+  } catch (error) {
+    console.error("Error fetching registered events:", error);
+    return [];
+  }
+}

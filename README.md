@@ -17,8 +17,7 @@
 3. Features
 4. Quick Start
 5. Contributing
-6. License
-7. Contact
+
 
 ---
 
@@ -59,41 +58,6 @@ This repository contains the source code for Esperanza 2k26, the annual technica
 ## Quick Start
 
 For detailed setup instructions, check SETUP_GUIDE.md.
-
-### Prerequisites
-
-- Node.js ≥ 18
-- MongoDB (local or Atlas)
-
-### Installation Steps
-
-1. Clone & Navigate:
-   ```bash
-   git clone <repo-url>
-   cd Esperanza_2k25
-   ```
-
-2. Install Dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Environment Configuration:
-   Create `.env.local` in root:
-   ```env
-   MONGO_URI=mongodb://localhost:27017
-   DB_NAME=esperanza2k26
-   AUTH_SECRET=your_auth_secret
-   NEXTAUTH_URL=http://localhost:3000
-   ```
-
-4. Run Development Server:
-   ```bash
-   npm run dev
-   ```
-   Open http://localhost:3000
-
----
 
 ## Contributing
 
