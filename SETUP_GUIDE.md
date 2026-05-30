@@ -6,7 +6,7 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Prerequisites](#prerequisites)
 - [Local Development Setup](#local-development-setup)
@@ -50,29 +50,24 @@ npm install
 Create a `.env.local` file in the root of the project with the following content:
 
 ```env
-# ==================================
-# MongoDB Configuration
-# ==================================
-MONGO_URI=mongodb://localhost:27017
+MONGO_URI=
 DB_NAME=esperanza2k26
 
-# ==================================
 # NextAuth Configuration
-# ==================================
-AUTH_SECRET=your_secure_auth_secret
+AUTH_SECRET=
 # Generate one using: openssl rand -base64 32
 
-# ==================================
+
 # NextAuth URL (for development)
-# ==================================
 NEXTAUTH_URL=http://localhost:3000
 
-# ==================================
-# Cloudinary (for profile photos)
-# ==================================
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
+GMAIL_USER=
+GMAIL_PASS=
+BREVO_API_KEY=
+
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
 ```
 
 ### 4️⃣ Start MongoDB
@@ -273,8 +268,12 @@ npm run dev -- -p 3001
 ```bash
 npm run dev          # Start dev server with Turbopack
 npm run build        # Build for production
+
+
 npm start            # Start production server
 npm run lint         # Run ESLint
+
+
 npm run seed:admin   # Seed admin user
 npm run seed:events  # Seed events
 ```
