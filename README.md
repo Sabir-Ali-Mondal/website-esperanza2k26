@@ -107,17 +107,4 @@ We welcome contributions! Here's how you can help:
 
 ---
 
-## License
-
-Distributed under the MIT License. See LICENSE for more information.
-
----
-
-## Contact
-
-- Email: your-email@example.com
-- GitHub Issues: Create Issue
-
----
-
 <p align="center">Made with ❤ for CGEC Esperanza</p>
