@@ -1,7 +1,7 @@
 # Esperanza 2k26 - Complete Setup & Architecture Guide
 
 <p align="center">
-  <img src="" alt="Setup Guide" width="150"/>
+  <img src="https://github.com/Sabir-Ali-Mondal/website-esperanza2k26/blob/main/Esperanza_2k25/src/assets/images/espLogo.png?raw=true" alt="Setup Guide" width="150"/>
 </p>
 
 ---
