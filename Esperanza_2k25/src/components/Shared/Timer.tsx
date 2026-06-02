@@ -59,7 +59,7 @@ const Timer = () => {
 
   return (
     <section ref={sectionRef} className="py-16 px-8 max-w-6xl mx-auto">
-      <div className="relative inline-block mb-4 mx-auto w-full">
+      <div className="relative inline-block mb-8 mx-auto w-full">
         <h1
           className={`${sedgwick.className} text-5xl md:text-8xl font-bold text-gray-200 text-center relative z-10`}
         >
@@ -72,7 +72,6 @@ const Timer = () => {
             strokeDasharray: 1000,
             strokeDashoffset: 1000,
           }}
-          viewBox="0 0 500 100"
         >
           <text
             x="50%"

@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "seed:admin": "tsx scripts/seed-admin.ts",
-    "seed:events": "node scripts/seed-events.mjs",
-    "seed:events:force": "node scripts/seed-events.mjs --force"
+    "seed:events": "tsx scripts/seed-events.ts",
+    "seed:events:force": "tsx scripts/seed-events.ts --force"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

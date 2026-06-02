@@ -61,7 +61,7 @@ const Home = async () => {
       <div className="mt-16 md:mt-20">
         <Gallery />
       </div>
-      <div className="mt-16 md:mt-20 mb-16">
+      <div className="mt-16 md:mt-20">
         <Timer />
       </div>
     </div>

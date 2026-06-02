@@ -65,7 +65,6 @@ export default function Gallery() {
               strokeDasharray: 1000,
               strokeDashoffset: 1000,
             }}
-            viewBox="0 0 500 100"
           >
             <text
               x="50%"
@@ -150,21 +149,16 @@ export default function Gallery() {
                 repeatType: "reverse",
                 ease: "linear",
               }}
-            >
-              <div className="absolute inset-0 bg-black/90 rounded-[22px]" />
-            </motion.div>
+            />
 
             {/* Inner container */}
-            <div className="relative bg-black rounded-[22px] p-1 m-[2px]">
+            <div className="relative rounded-[22px] p-1 m-[2px]">
               <Image
                 src={memoriesCollage}
                 alt="Esperanza Memories Collage"
                 className="w-full h-auto rounded-[20px] object-cover"
                 priority
               />
-
-              {/* Gradient overlay to reduce white background */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60 pointer-events-none rounded-[20px]" />
 
               {/* Animated particles overlay */}
               <div className="absolute inset-0 pointer-events-none">
