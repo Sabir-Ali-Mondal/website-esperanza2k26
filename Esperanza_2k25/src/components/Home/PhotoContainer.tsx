@@ -8,6 +8,7 @@ import group12 from "@/assets/images/Group12.png";
 import Image from "next/image";
 import { sedgwick } from "@/utils/fonts";
 import React, { useEffect, useRef } from 'react';
+import AnimatedLine from "./AnimatedLine";
 
 
 const PhotoContainer = () => {
@@ -48,7 +49,7 @@ const PhotoContainer = () => {
   return (
     <section ref={sectionRef} className="py-16 px-8 max-w-6xl mx-auto">
 
-<div className="relative inline-block mb-12 mx-auto w-full">
+<div className="relative inline-block mb-4 mx-auto w-full">
         <h1 className={`${sedgwick.className} text-5xl md:text-8xl font-bold text-gray-200 text-center relative z-10`}>
           ESPERANZA
         </h1>
@@ -74,6 +75,7 @@ const PhotoContainer = () => {
           </text>
         </svg>
       </div>
+      <AnimatedLine />
 
 
       <div className="flex flex-col md:flex-row gap-12 items-center">
@@ -99,50 +101,46 @@ const PhotoContainer = () => {
 </div>
 
 <div className="flex-1 min-w-[300px] relative top-20 left-[0] md:left-[40]">
-<div className={`${sedgwick.className} text-lg text-gray-200 leading-relaxed underdog space-y-5`}>
+
+<div className={`${sedgwick.className} text-base md:text-lg text-gray-200 leading-relaxed underdog space-y-4`}>
 
   <p>
     Welcome to{" "}
-    <span className="bg-yellow-400/20 text-yellow-300 px-2 py-1 rounded-md">
+    <span className="bg-yellow-400/20 text-yellow-300 px-1">
       Esperanza’26
     </span>
-    , the grand Tech Cum Cultural Fest of{" "}CGEC
-    , happening from{" "}
-    <span className="bg-pink-400/20 text-pink-300 px-2 py-1 rounded-md">
+    , the Tech Cum Cultural Fest of CGEC, from{" "}
+    <span className="bg-pink-400/20 text-pink-300 px-1">
       16th–20th June 2026
     </span>.
   </p>
 
   <p>
-    The first three days will feature exciting{" "}
-    <span className="bg-purple-400/20 text-purple-300 px-2 py-1 rounded-md">
+    Three days of exciting{" "}
+    <span className="bg-purple-400/20 text-purple-300 px-1">
       technical events
-    </span>{" "}
-    including hackathons, coding contests, robotics, esports, web & app
-    development, quizzes, and many more innovation-driven challenges designed
-    to inspire creativity and competition.
+    </span>
+    , followed by two days of vibrant{" "}
+    <span className="bg-red-400/20 text-red-300 px-1">
+      cultural celebrations
+    </span>
+    .
   </p>
 
   <p>
-    The final two days will light up the campus with{" "}
-    <span className="bg-red-400/20 text-red-300 px-2 py-1 rounded-md">
-      vibrant cultural celebrations
-    </span>{" "}
-    featuring music, dance, fashion shows, art, performances, and unforgettable
-    moments of talent and expression.
-  </p>
-
-  <p>
-    Esperanza’26 says : — <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-amber-400/20 via-orange-400/20 to-yellow-300/20 border border-amber-300/20 text-amber-200 tracking-[0.25em] uppercase text-sm backdrop-blur-md shadow-lg">
-  "Where Technology Meets Culture & Innovation Meets Tradition"
-</span>
+    Esperanza’26 says : —{" "}
+    <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-amber-400/20 via-orange-400/20 to-yellow-300/20 border border-amber-300/20 text-amber-200 tracking-[0.25em] uppercase text-sm backdrop-blur-md shadow-lg">
+      "Where Technology Meets Culture & Innovation Meets Tradition"
+    </span>
   </p>
 
   <p className="text-xl text-white">
-    Let’s create memories. Let’s create history.
+    Create Memories. Create History.
   </p>
 
 </div>
+
+
   <Link href="brochure/brochure.pdf" target="_blank" className="inline-block">
   <Image
   src={group12}

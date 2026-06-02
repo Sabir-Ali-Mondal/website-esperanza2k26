@@ -15,9 +15,22 @@ import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 const Team = async () => {
   const teamMembers = await getPublicCrew();
   
+  // Define the desired order
+  const desiredOrder = ["technical", "cultural", "pending"];
+  
   const allCategories = Array.from(
     new Set(teamMembers.flatMap((m) => m.category || []))
-  ).sort();
+  ).sort((a, b) => {
+    const indexA = desiredOrder.indexOf(a.toLowerCase());
+    const indexB = desiredOrder.indexOf(b.toLowerCase());
+    
+    if (indexA !== -1 && indexB !== -1) {
+      return indexA - indexB;
+    }
+    if (indexA !== -1) return -1;
+    if (indexB !== -1) return 1;
+    return a.localeCompare(b);
+  });
 
   return (
     <div className="mt-[125px] min-h-[90vh] relative overflow-hidden">

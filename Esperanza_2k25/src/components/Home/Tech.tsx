@@ -8,6 +8,7 @@ import explore from "@/assets/images/Group45.png";
 import star3 from "@/assets/images/Star 2.png";
 //import meetOurDevelopers from "@/assets/images/meetOurDevelopers.png"
 import { sedgwick } from "@/utils/fonts";
+import AnimatedLine from "./AnimatedLine";
 const Tech = () => {
   const shadowRef = useRef<SVGSVGElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -44,7 +45,7 @@ const Tech = () => {
 
   return (
     <section ref={sectionRef} className="py-16 px-8 max-w-6xl mx-auto">
-      <div className="relative inline-block mb-12 mx-auto w-full">
+      <div className="relative inline-block mb-4 mx-auto w-full">
         <h1 className={`${sedgwick.className} text-5xl md:text-8xl font-bold text-gray-200 text-center relative z-10`}>
           Technical Events
         </h1>
@@ -70,6 +71,7 @@ const Tech = () => {
           </text>
         </svg>
       </div>
+      <AnimatedLine />
 
       
       <div className="flex flex-col md:flex-row gap-20 items-center">

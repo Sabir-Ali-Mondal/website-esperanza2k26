@@ -6,6 +6,7 @@ import cultural from "@/assets/images/Group50.png";
 import explore from "@/assets/images/Group45.png";
 import rectangle from "@/assets/images/Rectangle81.png";
 import { sedgwick } from "@/utils/fonts";
+import AnimatedLine from "./AnimatedLine";
 const Cultural = () => {
   const shadowRef = useRef<SVGSVGElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -42,9 +43,9 @@ const Cultural = () => {
 
   return (
     <section ref={sectionRef} className="py-16 px-8 max-w-6xl mx-auto">
-      <div className="relative inline-block mb-12 mx-auto w-full">
-      <h1 className={`${sedgwick.className} text-5xl md:text-8xl font-bold text-gray-200 text-center relative z-10`}>          
-        Cultural Events
+      <div className="relative inline-block mb-4 mx-auto w-full">
+        <h1 className={`${sedgwick.className} text-5xl md:text-8xl font-bold text-gray-200 text-center relative z-10`}>          
+          Cultural Events
         </h1>
         
         <svg
@@ -68,6 +69,7 @@ const Cultural = () => {
           </text>
         </svg>
       </div>
+      <AnimatedLine />
       
       <div className="flex flex-col md:flex-row gap-12 items-center">
 

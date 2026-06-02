@@ -43,25 +43,25 @@ const Home = async () => {
         <MarqueeText />
         <Container>{null}</Container>
       </div>
-      <div>
+      <div className="mt-16 md:mt-20">
         <PhotoContainer />
       </div>
-      <div className="mt-30">
+      <div className="mt-16 md:mt-20">
         <Band />
       </div>
-      <div className="mt-30">
+      <div className="mt-16 md:mt-20">
         <Tech />
       </div>
-      <div className="mt-30">
+      <div className="mt-16 md:mt-20">
         <Cultural />
       </div>
-      <div>
+      <div className="mt-16 md:mt-20">
         <ClubGrid />
       </div>
-      <div>
+      <div className="mt-16 md:mt-20">
         <Gallery />
       </div>
-      <div>
+      <div className="mt-16 md:mt-20 mb-16">
         <Timer />
       </div>
     </div>

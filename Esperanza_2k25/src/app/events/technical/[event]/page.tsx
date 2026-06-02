@@ -39,8 +39,8 @@ export default function TechnicalEventPage({ params }: any) {
   }
 
   const staticPoster = staticEventsData.find((e) => e.uniqueId == uniqueId)?.poster;
-  const poster = event?.poster || staticPoster;
-  const words = event?.eventName.split(" ").map((w: string) => ({ text: w }));
+  const poster = event?.poster && event.poster!== "" ? event.poster : staticPoster || "https://via.placeholder.com/400x400/333/fff?text=EVENT+POSTER";
+  const words = event?.eventName.split(" ").map((w: string) => ({ text: w })) || [{ text: "Event" }];
 
   return (
     <div className={`mt-[125px] min-h-screen relative ${sedgwick.className}`}>

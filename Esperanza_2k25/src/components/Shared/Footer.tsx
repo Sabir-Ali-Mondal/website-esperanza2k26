@@ -121,7 +121,7 @@ const Footer = () => {
             </h3>
             <div className="flex justify-center md:justify-start space-x-3 sm:space-x-4">
               <a
-                href="https://www.facebook.com/esperanza.cgec"
+                href="https://www.facebook.com/cgecesperanza"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="cursor-pointer hover:text-blue-600 transition-colors"
@@ -130,7 +130,7 @@ const Footer = () => {
                 <Facebook size={20} className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
               <a
-                href="https://www.instagram.com/esperanza_cgec/"
+                href="https://www.instagram.com/cgec_esperanza_/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="cursor-pointer hover:text-pink-600 transition-colors"
