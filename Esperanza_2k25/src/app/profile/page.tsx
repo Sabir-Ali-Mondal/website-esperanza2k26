@@ -39,7 +39,7 @@ export default function Profile() {
       new Set(
         (userData?.registeredEvents || []).map((id: any) => id.toString()),
       ),
-    );
+    ) as string[];
     const eventsData = await fetchRegisteredEvents(uniqueEventIds);
 
     setUser(userData);
