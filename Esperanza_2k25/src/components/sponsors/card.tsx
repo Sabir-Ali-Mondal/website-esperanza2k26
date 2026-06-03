@@ -23,14 +23,20 @@ const Card: React.FC<CardData> = ({ title, imageUrl, redirectURL }) => {
       {/* Image Container */}
       
       <div className="relative max-h-[300px] overflow-hidden flex items-center justify-center bg-white/10 p-4">
-        <Image
-          src={imageUrl}
-          alt={title}
-          className="w-full h-full max-h-[250px] object-contain transform transition-transform duration-500 group-hover:scale-105 sm:group-hover:scale-110"
-          width={400}
-          height={300}
-          loading="lazy"
-        />
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={title}
+            className="w-full h-full max-h-[250px] object-contain transform transition-transform duration-500 group-hover:scale-105 sm:group-hover:scale-110"
+            width={400}
+            height={300}
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-[250px] flex items-center justify-center text-gray-500">
+            No logo available
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-red-600/90 via-gray-400/30 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-350"/>
       </div>
       

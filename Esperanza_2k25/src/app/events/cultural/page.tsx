@@ -47,26 +47,26 @@ const Cultural = () => {
 
   if (loading) {
     return (
-      <div className="mt-[125px] min-h-[90vh] relative flex items-center justify-center">
+      <div className="mt-[80px] min-h-[90vh] relative flex items-center justify-center">
         <div className="animate-pulse text-white">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="mt-[125px] min-h-[90vh] relative">
+    <div className="mt-[80px] min-h-[90vh] relative">
       <Image
         src={RadialBgRed}
         alt=""
         className="opacity-20 sm:opacity-40 md:opacity-55 lg:opacity-65 absolute  left-[50%] translate-x-[-50%]  z-[-1]"
       />
       <Image src={Hexagon} alt="" className="absolute " />
-      <div className="flex justify-center relative">
+      <div className="flex justify-center relative pt-0">
         <Container>
           <Image
             src={CulturalHeading}
             alt=""
-            className="w-[400px] sm:w-[500px] md:w-[800px] lg:w-[1000px]"
+            className="w-[400px] sm:w-[500px] md:w-[800px] lg:w-[1000px] mt-0"
           />
         </Container>
       </div>

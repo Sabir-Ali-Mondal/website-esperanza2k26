@@ -13,7 +13,7 @@ import { sedgwick } from "@/utils/fonts";
 
 const About = () => {
   return (
-    <div className="mt-[125px] min-h-[90vh] relative overflow-hidden">
+    <div className="mt-[80px] min-h-[90vh] relative overflow-hidden">
       <Image
         src={RadialBgRed}
         alt="background"
@@ -22,7 +22,7 @@ const About = () => {
       <Image src={Hexagon} alt="hexagon decoration" className="absolute z-0" />
 
       {/* About Us Section */}
-      <div className="flex flex-col items-center py-10 relative z-20">
+      <div className="flex flex-col items-center pt-0 pb-4 sm:pb-8 relative z-20">
         <Container>
           <div className="flex justify-center relative z-30 w-full max-w-[700px] mx-auto">
             <Image
@@ -57,16 +57,16 @@ const About = () => {
           </div>
         </div>
         <Container>
-<Container>
-  <video
-    autoPlay
-    loop
-    playsInline
-    muted
-    onClick={(e) => {
-      e.currentTarget.muted = !e.currentTarget.muted;
-    }}
-    className="
+          <Container>
+            <video
+              autoPlay
+              loop
+              playsInline
+              muted
+              onClick={(e) => {
+                e.currentTarget.muted = !e.currentTarget.muted;
+              }}
+              className="
       w-[95%]
       max-w-6xl
       m-auto
@@ -85,10 +85,10 @@ const About = () => {
       duration-500
       cursor-pointer
     "
-  >
-    <source src="/videos/espcgec.mp4" type="video/mp4" />
-  </video>
-</Container>
+            >
+              <source src="/videos/espcgec.mp4" type="video/mp4" />
+            </video>
+          </Container>
         </Container>
         <div className={`${sedgwick.className} text-3xl mt-4`}>
           <h1 className={`text-6xl`}>

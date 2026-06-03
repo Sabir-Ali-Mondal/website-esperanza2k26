@@ -58,6 +58,14 @@ export async function fetchUserByEmail(email: string) {
   try {
     await connectDB();
     const user = await User.findOne({ "credentials.email": email });
+    if (user && user.registeredEvents) {
+      // Proactively clean up duplicates in the database if any exist
+      const uniqueEventIds = Array.from(new Set(user.registeredEvents.map((id: any) => id.toString())));
+      if (uniqueEventIds.length !== user.registeredEvents.length) {
+        user.registeredEvents = uniqueEventIds;
+        await user.save();
+      }
+    }
     return JSON.parse(JSON.stringify(user));
   } catch (error) {
     console.error("Error fetching user by email:", error);

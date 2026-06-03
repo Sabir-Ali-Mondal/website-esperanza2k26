@@ -51,7 +51,7 @@ export default function SponsorsPage() {
     } else {
       const query = searchQuery.toLowerCase();
       setFilteredSponsors(
-        sponsors.filter((s) => s.name.toLowerCase().includes(query))
+        sponsors.filter((s) => s.name.toLowerCase().includes(query)),
       );
     }
   }, [searchQuery, sponsors]);
@@ -84,7 +84,9 @@ export default function SponsorsPage() {
       if (res.success) {
         customSwal.fire("Success!", res.message, "success");
         setSponsors((prev) =>
-          prev.map((s) => (s._id === editingSponsor._id ? { ...s, ...data } : s))
+          prev.map((s) =>
+            s._id === editingSponsor._id ? { ...s, ...data } : s,
+          ),
         );
       } else {
         customSwal.fire("Error!", res.message, "error");
@@ -102,25 +104,28 @@ export default function SponsorsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
           Sponsors Management
         </h1>
-        <div className="flex items-center gap-3 w-full sm:w-auto">
+        <div className="flex flex-row items-center gap-2 w-full sm:w-auto">
           <Input
             placeholder="Search sponsors..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 w-full sm:w-64"
+            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 flex-1 sm:w-64 h-9 sm:h-10"
           />
           <Button
+            size="sm"
+            className="sm:h-10 whitespace-nowrap px-3 sm:px-4"
             onClick={() => {
               setEditingSponsor(null);
               setModalOpen(true);
             }}
           >
-            <Plus className="h-4 w-4 mr-2" />
-            Add Sponsor
+            <Plus className="h-4 w-4 sm:mr-2" />
+            <span className="hidden sm:inline">Add Sponsor</span>
+            <span className="sm:hidden">Add</span>
           </Button>
         </div>
       </div>
@@ -152,12 +157,12 @@ export default function SponsorsPage() {
                 filteredSponsors.map((sponsor) => (
                   <div
                     key={sponsor._id}
-                    className="p-6 rounded-xl bg-gray-800/50 hover:bg-gray-800 transition-all"
+                    className="p-5 sm:p-6 rounded-xl bg-gray-800/50 hover:bg-gray-800 transition-all border border-gray-700/50"
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex items-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
+                      <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 flex-1 w-full">
                         {sponsor.logoUrl && (
-                          <div className="w-20 h-20 rounded-xl overflow-hidden border border-gray-700 bg-gray-800">
+                          <div className="w-24 h-24 sm:w-20 sm:h-20 rounded-xl overflow-hidden border border-gray-700 bg-gray-900 flex-shrink-0">
                             <img
                               src={sponsor.logoUrl}
                               alt={sponsor.name}
@@ -165,29 +170,30 @@ export default function SponsorsPage() {
                             />
                           </div>
                         )}
-                        <div>
-                          <h3 className="text-xl font-bold text-white mb-1">
+                        <div className="flex-1 text-center sm:text-left min-w-0">
+                          <h3 className="text-xl font-bold text-white mb-1 truncate">
                             {sponsor.name}
                           </h3>
                           <a
                             href={sponsor.website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm text-blue-400 hover:text-blue-300 break-all"
+                            className="text-sm text-blue-400 hover:text-blue-300 break-all transition-colors"
                           >
                             {sponsor.website}
                           </a>
                           {sponsor.description && (
-                            <p className="text-sm text-gray-400 mt-2">
+                            <p className="text-sm text-gray-400 mt-2 leading-relaxed">
                               {sponsor.description}
                             </p>
                           )}
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 self-end sm:self-start bg-gray-900/50 p-1 rounded-lg sm:bg-transparent sm:p-0">
                         <Button
                           variant="ghost"
                           size="icon"
+                          className="h-9 w-9 sm:h-10 sm:w-10 text-gray-400 hover:text-white hover:bg-gray-700"
                           onClick={() => {
                             setEditingSponsor(sponsor);
                             setModalOpen(true);
@@ -198,6 +204,7 @@ export default function SponsorsPage() {
                         <Button
                           variant="destructive"
                           size="icon"
+                          className="h-9 w-9 sm:h-10 sm:w-10 hover:bg-red-600"
                           onClick={() => handleDeleteSponsor(sponsor._id)}
                         >
                           <Trash2 className="h-4 w-4" />

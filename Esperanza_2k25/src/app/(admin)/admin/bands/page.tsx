@@ -50,7 +50,7 @@ export default function BandsPage() {
     } else {
       const query = searchQuery.toLowerCase();
       setFilteredBands(
-        bands.filter((b) => b.title.toLowerCase().includes(query))
+        bands.filter((b) => b.title.toLowerCase().includes(query)),
       );
     }
   }, [searchQuery, bands]);
@@ -83,7 +83,7 @@ export default function BandsPage() {
       if (res.success) {
         customSwal.fire("Success!", res.message, "success");
         setBands((prev) =>
-          prev.map((b) => (b._id === editingBand._id ? { ...b, ...data } : b))
+          prev.map((b) => (b._id === editingBand._id ? { ...b, ...data } : b)),
         );
       } else {
         customSwal.fire("Error!", res.message, "error");
@@ -101,25 +101,28 @@ export default function BandsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
           Bands Management
         </h1>
-        <div className="flex items-center gap-3 w-full sm:w-auto">
+        <div className="flex flex-row items-center gap-2 w-full sm:w-auto">
           <Input
             placeholder="Search bands..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 w-full sm:w-64"
+            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 flex-1 sm:w-64 h-9 sm:h-10"
           />
           <Button
+            size="sm"
+            className="sm:h-10 whitespace-nowrap px-3 sm:px-4"
             onClick={() => {
               setEditingBand(null);
               setModalOpen(true);
             }}
           >
-            <Plus className="h-4 w-4 mr-2" />
-            Add Band
+            <Plus className="h-4 w-4 sm:mr-2" />
+            <span className="hidden sm:inline">Add Band</span>
+            <span className="sm:hidden">Add</span>
           </Button>
         </div>
       </div>
@@ -153,10 +156,10 @@ export default function BandsPage() {
                     key={band._id}
                     className="p-6 rounded-xl bg-gray-800/50 hover:bg-gray-800 transition-all"
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex items-center gap-4">
+                    <div className="flex flex-col sm:flex-row items-start justify-between gap-6">
+                      <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 flex-1 w-full">
                         {band.imageUrl && (
-                          <div className="w-32 h-24 rounded-xl overflow-hidden border border-gray-700 bg-gray-800">
+                          <div className="w-full sm:w-32 h-48 sm:h-24 rounded-xl overflow-hidden border border-gray-700 bg-gray-800 flex-shrink-0">
                             <img
                               src={band.imageUrl}
                               alt={band.title}
@@ -164,21 +167,22 @@ export default function BandsPage() {
                             />
                           </div>
                         )}
-                        <div>
-                          <h3 className="text-xl font-bold text-white mb-1">
+                        <div className="flex-1 text-center sm:text-left">
+                          <h3 className="text-xl font-bold text-white mb-2">
                             {band.title}
                           </h3>
                           {band.description && (
-                            <p className="text-sm text-gray-400">
+                            <p className="text-sm text-gray-400 leading-relaxed">
                               {band.description}
                             </p>
                           )}
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 self-end sm:self-start bg-gray-900/50 p-1 rounded-lg sm:bg-transparent sm:p-0">
                         <Button
                           variant="ghost"
                           size="icon"
+                          className="hover:bg-gray-700 text-gray-400 hover:text-white"
                           onClick={() => {
                             setEditingBand(band);
                             setModalOpen(true);
@@ -189,6 +193,7 @@ export default function BandsPage() {
                         <Button
                           variant="destructive"
                           size="icon"
+                          className="hover:bg-red-600"
                           onClick={() => handleDeleteBand(band._id)}
                         >
                           <Trash2 className="h-4 w-4" />

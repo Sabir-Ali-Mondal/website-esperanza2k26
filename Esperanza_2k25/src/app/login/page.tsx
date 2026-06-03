@@ -8,14 +8,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-const Login = async() => {
-
-  const session = await auth()
-  if(session?.user?.email) redirect("/")
+const Login = async () => {
+  const session = await auth();
+  if (session?.user?.email) redirect("/");
 
   return (
-    <div className="min-h-[90vh] bg-black text-white relative">
-      <Container>
+    <div className="min-h-[90vh] bg-black text-white relative mt-[80px]">
+      <div className="container mx-auto px-4 pt-0 pb-2 relative z-10">
         <div className=" flex items-center">
           <Link href="/">
             <Button
@@ -27,7 +26,7 @@ const Login = async() => {
             </Button>
           </Link>
         </div>
-      </Container>
+      </div>
       <Image
         src={rocket}
         alt=""

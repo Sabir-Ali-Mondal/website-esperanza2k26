@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getAllEvents, deleteEvent, updateEvent, createEvent } from "@/actions/admin/events.action";
+import {
+  getAllEvents,
+  deleteEvent,
+  updateEvent,
+  createEvent,
+} from "@/actions/admin/events.action";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -57,8 +62,8 @@ export default function EventsPage() {
           (e) =>
             e.eventName.toLowerCase().includes(query) ||
             e.eventDescription.toLowerCase().includes(query) ||
-            e.venue.toLowerCase().includes(query)
-        )
+            e.venue.toLowerCase().includes(query),
+        ),
       );
     }
   }, [searchQuery, events]);
@@ -91,7 +96,7 @@ export default function EventsPage() {
       if (res.success) {
         customSwal.fire("Success!", res.message, "success");
         setEvents((prev) =>
-          prev.map((e) => (e._id === editingEvent._id ? { ...e, ...data } : e))
+          prev.map((e) => (e._id === editingEvent._id ? { ...e, ...data } : e)),
         );
       } else {
         customSwal.fire("Error!", res.message, "error");
@@ -109,23 +114,28 @@ export default function EventsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
           Events Management
         </h1>
-        <div className="flex items-center gap-3 w-full sm:w-auto">
+        <div className="flex flex-row items-center gap-2 w-full sm:w-auto">
           <Input
             placeholder="Search events..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 w-full sm:w-64"
+            className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 flex-1 sm:w-64 h-9 sm:h-10"
           />
-          <Button onClick={() => {
-            setEditingEvent(null);
-            setModalOpen(true);
-          }}>
-            <Plus className="h-4 w-4 mr-2" />
-            Add Event
+          <Button
+            size="sm"
+            className="sm:h-10 whitespace-nowrap px-3 sm:px-4"
+            onClick={() => {
+              setEditingEvent(null);
+              setModalOpen(true);
+            }}
+          >
+            <Plus className="h-4 w-4 sm:mr-2" />
+            <span className="hidden sm:inline">Add Event</span>
+            <span className="sm:hidden">Add</span>
           </Button>
         </div>
       </div>
@@ -159,42 +169,49 @@ export default function EventsPage() {
                     key={event._id}
                     className="p-6 rounded-xl bg-gray-800/50 hover:bg-gray-800 transition-all"
                   >
-                    <div className="flex items-start justify-between">
-                      <div>
+                    <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
+                      <div className="flex-1 w-full">
                         <h3 className="text-xl font-bold text-white mb-2">
                           {event.eventName}
                         </h3>
-                        <p className="text-sm text-gray-400 mb-2">
+                        <p className="text-sm text-gray-400 mb-3 leading-relaxed">
                           {event.eventDescription}
                         </p>
-                        <div className="flex items-center gap-4 text-sm text-gray-500">
-                          <span>{event.eventDate}</span>
-                          <span>•</span>
-                          <span>{event.eventStartTime} - {event.eventEndTime}</span>
-                          <span>•</span>
-                          <span>{event.venue}</span>
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500 mb-3">
+                          <span className="flex items-center gap-1">
+                            {event.eventDate}
+                          </span>
+                          <span className="hidden sm:inline">•</span>
+                          <span className="flex items-center gap-1">
+                            {event.eventStartTime} - {event.eventEndTime}
+                          </span>
+                          <span className="hidden sm:inline">•</span>
+                          <span className="flex items-center gap-1">
+                            {event.venue}
+                          </span>
                         </div>
-                        <div className="flex items-center gap-2 mt-2">
+                        <div className="flex flex-wrap items-center gap-2">
                           <span
                             className={`px-3 py-1 rounded-full text-xs font-semibold ${
                               event.eventCategory === "technical"
-                                ? "bg-blue-500/20 text-blue-400"
-                                : "bg-purple-500/20 text-purple-400"
+                                ? "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                                : "bg-purple-500/20 text-purple-400 border border-purple-500/30"
                             }`}
                           >
                             {event.eventCategory}
                           </span>
                           {event.nonRegisterable && (
-                            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-gray-500/20 text-gray-400">
+                            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-gray-500/20 text-gray-400 border border-gray-500/30">
                               Non-Registerable
                             </span>
                           )}
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 self-end sm:self-start bg-gray-900/50 p-1 rounded-lg sm:bg-transparent sm:p-0">
                         <Button
                           variant="ghost"
                           size="icon"
+                          className="hover:bg-gray-700 text-gray-400 hover:text-white"
                           onClick={() => {
                             setEditingEvent(event);
                             setModalOpen(true);
@@ -205,6 +222,7 @@ export default function EventsPage() {
                         <Button
                           variant="destructive"
                           size="icon"
+                          className="hover:bg-red-600"
                           onClick={() => handleDeleteEvent(event._id)}
                         >
                           <Trash2 className="h-4 w-4" />
