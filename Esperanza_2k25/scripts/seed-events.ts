@@ -32,7 +32,7 @@ const seedEvents = async () => {
       await Events.deleteMany({});
     }
 
-    const eventsData = [
+  const eventsData = [
       { uniqueId: 101, eventName: "TECH EXHIBITION", eventDescription: "Showcase your technical projects!", eventDate: "2026-06-16", eventStartTime: "10:00", eventEndTime: "17:00", venue: "Tech Block", eventCategory: "technical", ruleBookLink: "", leads: [] },
       { uniqueId: 102, eventName: "GRAPHIC DESIGN", eventDescription: "Design competition for creative minds", eventDate: "2026-06-16", eventStartTime: "11:00", eventEndTime: "15:00", venue: "CSE Lab", eventCategory: "technical", ruleBookLink: "", leads: [] },
       { uniqueId: 103, eventName: "TECHNO COMMERCIAL", eventDescription: "Present your business ideas", eventDate: "2026-06-17", eventStartTime: "10:00", eventEndTime: "16:00", venue: "Conference Hall", eventCategory: "technical", ruleBookLink: "", leads: [] },
@@ -40,7 +40,6 @@ const seedEvents = async () => {
       { uniqueId: 105, eventName: "PES", eventDescription: "Paper presentation competition", eventDate: "2026-06-18", eventStartTime: "09:00", eventEndTime: "13:00", venue: "ECE Dept", eventCategory: "technical", ruleBookLink: "", leads: [] },
       { uniqueId: 106, eventName: "AUTOCAD 2D CE", eventDescription: "AutoCAD competition for Civil Engineering", eventDate: "2026-06-16", eventStartTime: "10:00", eventEndTime: "14:00", venue: "CE Lab", eventCategory: "technical", ruleBookLink: "", leads: [] },
       { uniqueId: 107, eventName: "BRIDGE MAKING", eventDescription: "Build and test model bridges", eventDate: "2026-06-17", eventStartTime: "11:00", eventEndTime: "16:00", venue: "CE Workshop", eventCategory: "technical", ruleBookLink: "", leads: [] },
-      { uniqueId: 108, eventName: "CGEC MEME MADNESS", eventDescription: "Meme creation competition", eventDate: "2026-06-18", eventStartTime: "12:00", eventEndTime: "15:00", venue: "Online", eventCategory: "technical", ruleBookLink: "", leads: [] },
       { uniqueId: 109, eventName: "FIX THE ERROR", eventDescription: "Debugging competition", eventDate: "2026-06-16", eventStartTime: "13:00", eventEndTime: "16:00", venue: "CSE Lab", eventCategory: "technical", ruleBookLink: "", leads: [] },
       { uniqueId: 110, eventName: "CODE A THON", eventDescription: "Coding marathon", eventDate: "2026-06-17", eventStartTime: "10:00", eventEndTime: "18:00", venue: "CSE Lab", eventCategory: "technical", ruleBookLink: "", leads: [] },
       { uniqueId: 111, eventName: "HACK O VATION", eventDescription: "Innovation hackathon", eventDate: "2026-06-18", eventStartTime: "09:00", eventEndTime: "21:00", venue: "CSE Dept", eventCategory: "technical", ruleBookLink: "", leads: [] },
@@ -51,12 +50,12 @@ const seedEvents = async () => {
       { uniqueId: 116, eventName: "PHOTOGRAPHY", eventDescription: "Capture the moment contest", eventDate: "2026-06-17", eventStartTime: "All Day", eventEndTime: "All Day", venue: "Campus", eventCategory: "technical", ruleBookLink: "", leads: [] },
       { uniqueId: 117, eventName: "ROBO SOCCER", eventDescription: "Robot football match", eventDate: "2026-06-17", eventStartTime: "15:00", eventEndTime: "19:00", venue: "Robotics Lab", eventCategory: "technical", ruleBookLink: "", leads: [] },
       { uniqueId: 118, eventName: "CHESS", eventDescription: "Strategy chess tournament", eventDate: "2026-06-18", eventStartTime: "10:00", eventEndTime: "16:00", venue: "Student Activity Center", eventCategory: "technical", ruleBookLink: "", leads: [] },
-      { uniqueId: 119, eventName: "MATH", eventDescription: "Mathematics olympiad", eventDate: "2026-06-16", eventStartTime: "10:00", eventEndTime: "13:00", venue: "ME Dept", eventCategory: "technical", ruleBookLink: "", leads: [] },
-      { uniqueId: 120, eventName: "CHEMISTRY", eventDescription: "Chemistry olympiad", eventDate: "2026-06-17", eventStartTime: "10:00", eventEndTime: "13:00", venue: "Chemistry Lab", eventCategory: "technical", ruleBookLink: "", leads: [] },
+      { uniqueId: 119, eventName: "MATH OLYMPIAD", eventDescription: "Mathematics olympiad", eventDate: "2026-06-16", eventStartTime: "10:00", eventEndTime: "13:00", venue: "ME Dept", eventCategory: "technical", ruleBookLink: "", leads: [] },
+      { uniqueId: 120, eventName: "CHEMISTRY OLYMPIAD", eventDescription: "Chemistry olympiad", eventDate: "2026-06-17", eventStartTime: "10:00", eventEndTime: "13:00", venue: "Chemistry Lab", eventCategory: "technical", ruleBookLink: "", leads: [] },
       { uniqueId: 121, eventName: "PHYSICS OLYMPIAD", eventDescription: "Physics knowledge competition", eventDate: "2026-06-18", eventStartTime: "10:00", eventEndTime: "13:00", venue: "Physics Lab", eventCategory: "technical", ruleBookLink: "", leads: [] },
       { uniqueId: 122, eventName: "MODEL MAKING", eventDescription: "Build engineering models", eventDate: "2026-06-17", eventStartTime: "11:00", eventEndTime: "16:00", venue: "ME Workshop", eventCategory: "technical", ruleBookLink: "", leads: [] },
       { uniqueId: 123, eventName: "SOLID WORKS", eventDescription: "3D modeling with SolidWorks", eventDate: "2026-06-16", eventStartTime: "10:00", eventEndTime: "15:00", venue: "CAD Lab", eventCategory: "technical", ruleBookLink: "", leads: [] },
-      { uniqueId: 124, eventName: "PROMPT", eventDescription: "AI prompt engineering contest", eventDate: "2026-06-18", eventStartTime: "11:00", eventEndTime: "14:00", venue: "CSE Lab", eventCategory: "technical", ruleBookLink: "", leads: [] },
+      { uniqueId: 124, eventName: "PROMPT ENGINEERING", eventDescription: "AI prompt engineering contest", eventDate: "2026-06-18", eventStartTime: "11:00", eventEndTime: "14:00", venue: "CSE Lab", eventCategory: "technical", ruleBookLink: "", leads: [] },
       { uniqueId: 125, eventName: "WEB & APP", eventDescription: "Web and app development", eventDate: "2026-06-17", eventStartTime: "10:00", eventEndTime: "20:00", venue: "CSE Lab", eventCategory: "technical", ruleBookLink: "", leads: [] },
       { uniqueId: 126, eventName: "LINE FOLLOWING", eventDescription: "Line following robot competition", eventDate: "2026-06-16", eventStartTime: "14:00", eventEndTime: "17:00", venue: "Robotics Lab", eventCategory: "technical", ruleBookLink: "", leads: [] },
       { uniqueId: 127, eventName: "VIDEOMAKING & VIDEO EDITING", eventDescription: "Create and edit videos", eventDate: "2026-06-17", eventStartTime: "All Day", eventEndTime: "All Day", venue: "Online", eventCategory: "technical", ruleBookLink: "", leads: [] },
