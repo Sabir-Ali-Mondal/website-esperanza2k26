@@ -32,7 +32,7 @@ const Sponsers = () => {
   }, []);
 
   return (
-    <div className="mt-[125px] min-h-[90vh] relative overflow-hidden">
+    <div className="mt-[80px] min-h-[90vh] relative overflow-hidden">
       <Image
         src={RadialBgRed}
         alt="background"
@@ -41,7 +41,7 @@ const Sponsers = () => {
       <Image src={Hexagon} alt="hexagon decoration" className="absolute z-0" />
 
       {/* About Us Section */}
-      <div className="flex flex-col items-center py-10 relative z-20">
+      <div className="flex flex-col items-center pt-0 pb-4 sm:pb-8 relative z-20">
         <Container>
           <div className="flex justify-center relative z-30 w-full max-w-[700px] mx-auto">
             <Image
@@ -58,7 +58,9 @@ const Sponsers = () => {
       <Container>
         {loading ? (
           <div className="flex justify-center items-center py-20">
-            <div className="animate-pulse text-gray-500 text-xl">Loading sponsors...</div>
+            <div className="animate-pulse text-gray-500 text-xl">
+              Loading sponsors...
+            </div>
           </div>
         ) : sponsors.length === 0 ? (
           <div className="text-center py-20 text-gray-500">

@@ -12,7 +12,14 @@ export const getAllUsers = async () => {
 
   await connectDB();
   const users = await User.find().sort({ createdAt: -1 });
-  const plainUsers = users.map(user => JSON.parse(JSON.stringify(user)));
+  const plainUsers = users.map(user => {
+    const plainUser = JSON.parse(JSON.stringify(user));
+    // Ensure registeredEvents count is accurate by removing potential duplicates
+    if (plainUser.registeredEvents) {
+      plainUser.registeredEvents = Array.from(new Set(plainUser.registeredEvents.map((id: any) => id.toString())));
+    }
+    return plainUser;
+  });
   return { success: true, users: plainUsers };
 };
 

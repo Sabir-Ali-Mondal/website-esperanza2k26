@@ -51,26 +51,26 @@ const Technical = () => {
 
   if (loading) {
     return (
-      <div className="min-h-[90vh] mt-[125px] relative flex items-center justify-center">
+      <div className="min-h-[90vh] mt-[80px] relative flex items-center justify-center">
         <div className="animate-pulse text-white">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-[90vh] mt-[125px] relative">
+    <div className="min-h-[90vh] mt-[80px] relative">
       <Image
         src={RadialBgRed}
         alt=""
         className="opacity-20 sm:opacity-40 md:opacity-55 lg:opacity-65 absolute left-[50%] translate-x-[-50%]  z-[-1]"
       />
       <Image src={Hexagon} alt="" className="absolute " />
-      <div className="flex justify-center relative">
+      <div className="flex justify-center relative pt-0">
         <Container>
           <Image
             src={TechnicalHeading}
             alt=""
-            className="w-[400px] sm:w-[500px] md:w-[800px] lg:w-[1000px] mt-10"
+            className="w-[400px] sm:w-[500px] md:w-[800px] lg:w-[1000px] mt-0"
           />
         </Container>
       </div>

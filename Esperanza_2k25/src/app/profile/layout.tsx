@@ -1,3 +1,4 @@
+import Header from "@/components/Shared/Header";
 import { metaDescription } from "@/utils/static/metaData";
 import { type Metadata } from "next";
 import { ReactNode } from "react";
@@ -8,7 +9,12 @@ export const metadata : Metadata = {
 }
 
 const layout = ({ children }: { children: ReactNode }) => {
-  return <>{children}</>;
+  return (
+    <>
+      <Header />
+      {children}
+    </>
+  );
 };
 
 export default layout;

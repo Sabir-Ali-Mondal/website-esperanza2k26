@@ -82,19 +82,19 @@ export default function UsersPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+      <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
         Users
       </h1>
 
       <Card className="bg-gray-900/80 border-gray-700">
-        <CardHeader>
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <CardHeader className="pb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <CardTitle className="text-xl text-white">All Users</CardTitle>
-            <div className="relative w-full md:w-80">
+            <div className="relative w-full sm:w-80">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
                 placeholder="Search users..."
-                className="pl-10 bg-gray-800 border-gray-700 text-white"
+                className="pl-10 bg-gray-800 border-gray-700 text-white h-9 sm:h-10"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -127,10 +127,10 @@ export default function UsersPage() {
                 filteredUsers.map((user) => (
                   <div
                     key={user._id}
-                    className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors"
+                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors"
                   >
-                    <div className="flex items-center gap-4">
-                      <Avatar>
+                    <div className="flex items-center gap-4 w-full sm:w-auto">
+                      <Avatar className="h-12 w-12">
                         {user.profilePhoto && (
                           <AvatarImage src={user.profilePhoto} />
                         )}
@@ -138,42 +138,45 @@ export default function UsersPage() {
                           {user.name.charAt(0)}
                         </AvatarFallback>
                       </Avatar>
-                      <div>
-                        <p className="font-medium text-white">{user.name}</p>
-                        <p className="text-sm text-gray-400">{user.credentials.email}</p>
+                      <div className="min-w-0">
+                        <p className="font-medium text-white truncate">{user.name}</p>
+                        <p className="text-sm text-gray-400 truncate">{user.credentials.email}</p>
                         <p className="text-xs text-gray-500">
                           {user.credentials.phoneNumber}
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-wrap items-center justify-between sm:justify-end gap-4 w-full sm:w-auto pt-2 sm:pt-0 border-t border-gray-700/50 sm:border-0">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm text-gray-400">Registrations:</span>
-                        <span className="text-sm font-medium text-white">
+                        <span className="text-xs sm:text-sm text-gray-400">Registrations:</span>
+                        <span className="text-sm font-medium text-white bg-gray-900 px-2 py-0.5 rounded-md">
                           {user.registeredEvents.length}
                         </span>
                       </div>
-                      <Select
-                        value={user.role}
-                        onValueChange={(value: "user" | "admin") =>
-                          handleRoleChange(user._id, value)
-                        }
-                      >
-                        <SelectTrigger className="w-32 bg-gray-800 border-gray-700 text-white">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent className="bg-gray-800 border-gray-700">
-                          <SelectItem value="user">User</SelectItem>
-                          <SelectItem value="admin">Admin</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <Button
-                        variant="destructive"
-                        size="icon"
-                        onClick={() => handleDeleteUser(user._id)}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      <div className="flex items-center gap-2">
+                        <Select
+                          value={user.role}
+                          onValueChange={(value: "user" | "admin") =>
+                            handleRoleChange(user._id, value)
+                          }
+                        >
+                          <SelectTrigger className="w-28 sm:w-32 h-9 bg-gray-800 border-gray-700 text-white">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent className="bg-gray-800 border-gray-700">
+                            <SelectItem value="user">User</SelectItem>
+                            <SelectItem value="admin">Admin</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <Button
+                          variant="destructive"
+                          size="icon"
+                          className="h-9 w-9"
+                          onClick={() => handleDeleteUser(user._id)}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 ))

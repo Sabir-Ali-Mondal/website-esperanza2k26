@@ -14,16 +14,16 @@ import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 
 const Team = async () => {
   const teamMembers = await getPublicCrew();
-  
+
   // Define the desired order
   const desiredOrder = ["technical", "cultural", "pending"];
-  
+
   const allCategories = Array.from(
-    new Set(teamMembers.flatMap((m) => m.category || []))
+    new Set(teamMembers.flatMap((m) => m.category || [])),
   ).sort((a, b) => {
     const indexA = desiredOrder.indexOf(a.toLowerCase());
     const indexB = desiredOrder.indexOf(b.toLowerCase());
-    
+
     if (indexA !== -1 && indexB !== -1) {
       return indexA - indexB;
     }
@@ -33,7 +33,7 @@ const Team = async () => {
   });
 
   return (
-    <div className="mt-[125px] min-h-[90vh] relative overflow-hidden">
+    <div className="mt-[80px] min-h-[90vh] relative overflow-hidden">
       <Image
         src={RadialBgRed}
         alt="background"
@@ -41,7 +41,7 @@ const Team = async () => {
       />
       <Image src={Hexagon} alt="hexagon decoration" className="absolute z-0" />
 
-      <div className="flex flex-col items-center py-10 relative z-20">
+      <div className="flex flex-col items-center pt-2 pb-10 relative z-20">
         <Container>
           <div className="flex justify-center relative z-30 w-full max-w-[700px] mx-auto">
             <Image
@@ -55,13 +55,17 @@ const Team = async () => {
       </div>
       <Container>
         <div className="flex justify-center relative z-50">
-          <Link href="/developers" target="_blank" className="inline-block w-[90%] md:max-w-[300px] pb-15 m-auto animate-pulse duration-200 hover:animate-none">
-              <Image
-                src={meetOurDevelopers}
-                alt=""
-                width={270}
-                className="pt-[20] w-full m-auto hover:scale-108 transition-transform duration-300 cursor-pointer"
-              />
+          <Link
+            href="/developers"
+            target="_blank"
+            className="inline-block w-[90%] md:max-w-[300px] pb-15 m-auto animate-pulse duration-200 hover:animate-none"
+          >
+            <Image
+              src={meetOurDevelopers}
+              alt=""
+              width={270}
+              className="pt-[20] w-full m-auto hover:scale-108 transition-transform duration-300 cursor-pointer"
+            />
           </Link>
         </div>
       </Container>
@@ -76,8 +80,10 @@ const Team = async () => {
       </div>
       <Container>
         <div className="flex justify-center">
-          {teamMembers.filter(m => m.lead).length > 0 ? (
-            <AnimatedTestimonials testimonials={teamMembers.filter(m => m.lead)} />
+          {teamMembers.filter((m) => m.lead).length > 0 ? (
+            <AnimatedTestimonials
+              testimonials={teamMembers.filter((m) => m.lead)}
+            />
           ) : null}
         </div>
       </Container>

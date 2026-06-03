@@ -69,19 +69,19 @@ export default function MessagesPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+      <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
         Messages
       </h1>
 
       <Card className="bg-gray-900/80 border-gray-700">
-        <CardHeader>
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <CardHeader className="pb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <CardTitle className="text-xl text-white">All Messages</CardTitle>
-            <div className="relative w-full md:w-80">
+            <div className="relative w-full sm:w-80">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
                 placeholder="Search messages..."
-                className="pl-10 bg-gray-800 border-gray-700 text-white"
+                className="pl-10 bg-gray-800 border-gray-700 text-white h-9 sm:h-10"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -111,48 +111,52 @@ export default function MessagesPage() {
                 filteredMessages.map((msg) => (
                   <div
                     key={msg._id}
-                    className="p-6 rounded-xl bg-gray-800/50 hover:bg-gray-800 transition-all border border-gray-700/50"
+                    className="p-5 sm:p-6 rounded-xl bg-gray-800/50 hover:bg-gray-800 transition-all border border-gray-700/50"
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex gap-4 flex-1">
-                        <Avatar>
+                    <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
+                      <div className="flex flex-col sm:flex-row gap-4 flex-1 w-full">
+                        <Avatar className="h-12 w-12 sm:h-10 sm:w-10">
                           {msg.profilePhoto && (
                             <AvatarImage src={msg.profilePhoto} />
                           )}
-                          <AvatarFallback className="bg-red-600">
+                          <AvatarFallback className="bg-red-600 text-lg sm:text-base">
                             {msg.name ? msg.name.charAt(0).toUpperCase() : "U"}
                           </AvatarFallback>
                         </Avatar>
-                        <div className="flex-1">
-                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2">
-                            <h3 className="text-lg font-bold text-white">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-col mb-3">
+                            <h3 className="text-lg font-bold text-white truncate">
                               {msg.name}
                             </h3>
-                            <span className="text-sm text-gray-400">
-                              {msg.email}
-                            </span>
-                            <span className="text-sm text-gray-500">•</span>
-                            <span className="text-xs font-semibold text-white/90">
-                              {msg.createdAt
-                                ? new Date(msg.createdAt).toLocaleDateString(
-                                    "en-GB",
-                                  )
-                                : "N/A"}
-                            </span>
+                            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-400">
+                              <span className="truncate">{msg.email}</span>
+                              <span className="hidden sm:inline text-gray-600">•</span>
+                              <span className="text-xs font-semibold text-red-400 sm:text-white/70">
+                                {msg.createdAt
+                                  ? new Date(msg.createdAt).toLocaleDateString(
+                                      "en-GB",
+                                    )
+                                  : "N/A"}
+                              </span>
+                            </div>
                           </div>
-                          <p className="text-white font-medium whitespace-pre-wrap break-words">
-                            {msg.message}
-                          </p>
+                          <div className="bg-gray-900/40 p-3 rounded-lg border border-gray-700/30">
+                            <p className="text-gray-200 text-sm sm:text-base font-medium whitespace-pre-wrap break-words leading-relaxed">
+                              {msg.message}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                      <Button
-                        variant="destructive"
-                        size="icon"
-                        className="shrink-0"
-                        onClick={() => handleDeleteMessage(msg._id)}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      <div className="flex self-end sm:self-start">
+                        <Button
+                          variant="destructive"
+                          size="icon"
+                          className="h-9 w-9 sm:h-10 sm:w-10 hover:bg-red-600 transition-colors shadow-lg"
+                          onClick={() => handleDeleteMessage(msg._id)}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 ))

@@ -90,7 +90,10 @@ export const unregisterFromEvent = async (eventId: string) => {
       await event.save();
     }
 
-    user.registeredEvents.splice(eventIndex, 1);
+    // Remove all instances of this event from user's registeredEvents to clean up duplicates
+    user.registeredEvents = user.registeredEvents.filter(
+      (id: any) => id.toString() !== eventId.toString()
+    );
     await user.save();
 
     return {

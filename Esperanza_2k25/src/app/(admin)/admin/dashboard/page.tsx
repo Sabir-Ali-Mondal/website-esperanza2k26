@@ -67,11 +67,11 @@ export default function AdminDashboard() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+      <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
         Dashboard
       </h1>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {statCards.map((card, index) => (
           <Card
             key={index}
@@ -98,14 +98,14 @@ export default function AdminDashboard() {
         ))}
       </div>
       
-      <div className="flex flex-wrap gap-4">
-        <Button asChild className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-lg hover:shadow-xl transition-all duration-300 py-6">
+      <div className="flex flex-col sm:flex-row gap-4">
+        <Button asChild className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 shadow-lg hover:shadow-xl transition-all duration-300 py-6 sm:py-8 h-auto">
           <Link href="/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
             <Home className="h-6 w-6" />
             <span className="text-lg font-semibold">Go to Home</span>
           </Link>
         </Button>
-        <Button asChild className="flex-1 bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 shadow-lg hover:shadow-xl transition-all duration-300 py-6">
+        <Button asChild className="flex-1 bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 shadow-lg hover:shadow-xl transition-all duration-300 py-6 sm:py-8 h-auto">
           <Link href="/profile" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
             <User className="h-6 w-6" />
             <span className="text-lg font-semibold">View Profile</span>

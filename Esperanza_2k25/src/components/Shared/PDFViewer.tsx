@@ -25,12 +25,18 @@ export default function PDFViewer({ pdfUrl, isOpen, onClose }: PDFViewerProps) {
         </div>
         
         <div className="bg-gray-900 p-4 rounded-b-xl">
-          <iframe
-            src={pdfUrl}
-            className="w-full h-[70vh] rounded-xl border border-gray-700"
-            style={{ border: "none" }}
-            title="Rule Book"
-          />
+          {pdfUrl ? (
+            <iframe
+              src={pdfUrl}
+              className="w-full h-[70vh] rounded-xl border border-gray-700"
+              style={{ border: "none" }}
+              title="Rule Book"
+            />
+          ) : (
+            <div className="w-full h-[70vh] flex items-center justify-center text-gray-500">
+              No PDF URL provided
+            </div>
+          )}
         </div>
       </div>
     </div>

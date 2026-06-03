@@ -85,16 +85,21 @@ export default function CrewPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
           Crew Management
         </h1>
-        <Button onClick={() => {
-          setEditingMember(null);
-          setModalOpen(true);
-        }}>
-          <Plus className="h-4 w-4 mr-2" />
-          Add Member
+        <Button 
+          size="sm"
+          className="sm:h-10 whitespace-nowrap px-3 sm:px-4"
+          onClick={() => {
+            setEditingMember(null);
+            setModalOpen(true);
+          }}
+        >
+          <Plus className="h-4 w-4 sm:mr-2" />
+          <span className="hidden sm:inline">Add Member</span>
+          <span className="sm:hidden">Add</span>
         </Button>
       </div>
 

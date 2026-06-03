@@ -65,20 +65,24 @@ export default function ParticipantsPage() {
       const result = await getEventsWithParticipants();
       if (result.success) {
         const allEvents = result.events || [];
-        setEvents(allEvents.map(e => ({ ...e, loading: true })));
-        setFilteredEvents(allEvents.map(e => ({ ...e, loading: true })));
-        
+        setEvents(allEvents.map((e) => ({ ...e, loading: true })));
+        setFilteredEvents(allEvents.map((e) => ({ ...e, loading: true })));
+
         // Load events one by one
         let currentCount = 0;
         for (const event of allEvents) {
           // Simulate loading each event separately
-          await new Promise(resolve => setTimeout(resolve, 100));
-          setEvents(prev => prev.map(e => 
-            e._id === event._id ? { ...e, loading: false } : e
-          ));
-          setFilteredEvents(prev => prev.map(e => 
-            e._id === event._id ? { ...e, loading: false } : e
-          ));
+          await new Promise((resolve) => setTimeout(resolve, 100));
+          setEvents((prev) =>
+            prev.map((e) =>
+              e._id === event._id ? { ...e, loading: false } : e,
+            ),
+          );
+          setFilteredEvents((prev) =>
+            prev.map((e) =>
+              e._id === event._id ? { ...e, loading: false } : e,
+            ),
+          );
           currentCount++;
           setLoadedCount(currentCount);
         }
@@ -97,8 +101,8 @@ export default function ParticipantsPage() {
 
   const downloadExcel = (event: Event) => {
     const data: any[] = [];
-    event.teams.forEach(team => {
-      team.participants.forEach(p => {
+    event.teams.forEach((team) => {
+      team.participants.forEach((p) => {
         data.push({
           "Event Name": event.eventName,
           "Team Name": team.teamName,
@@ -113,7 +117,7 @@ export default function ParticipantsPage() {
         });
       });
     });
-    event.individualParticipants.forEach(p => {
+    event.individualParticipants.forEach((p) => {
       data.push({
         "Event Name": event.eventName,
         "Team Name": "Individual",
@@ -144,25 +148,26 @@ export default function ParticipantsPage() {
 
   const totalParticipants = filteredEvents.reduce(
     (sum, e) => sum + e.allParticipants.length,
-    0
+    0,
   );
 
   return (
     <div className="space-y-6 pb-10">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="min-w-0">
+          <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent truncate">
             Event Participants
           </h1>
-          <p className="text-gray-400 text-sm mt-1">
-            Loaded {loadedCount}/{events.length} events • Total {totalParticipants} participants
+          <p className="text-gray-400 text-xs sm:text-sm mt-1">
+            Loaded {loadedCount}/{events.length} events • Total{" "}
+            {totalParticipants} participants
           </p>
         </div>
-        <div className="relative w-full md:w-80">
+        <div className="relative w-full sm:w-80">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
           <Input
             placeholder="Search events..."
-            className="pl-10 bg-gray-900/50 border-gray-700 text-white"
+            className="pl-10 bg-gray-900/50 border-gray-700 text-white h-9 sm:h-10"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -175,11 +180,11 @@ export default function ParticipantsPage() {
             key={event._id}
             className="bg-gray-900/80 border-gray-700 overflow-hidden"
           >
-            <CardHeader className="border-b border-gray-800 bg-gray-800/30">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <CardTitle className="text-xl text-white">
+            <CardHeader className="border-b border-gray-800 bg-gray-800/30 px-4 py-5 sm:px-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="space-y-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <CardTitle className="text-lg sm:text-xl text-white">
                       {event.eventName}
                     </CardTitle>
                     <Badge
@@ -188,7 +193,7 @@ export default function ParticipantsPage() {
                           ? "default"
                           : "secondary"
                       }
-                      className="capitalize"
+                      className="capitalize text-[10px] sm:text-xs h-5"
                     >
                       {event.eventCategory}
                     </Badge>
@@ -196,30 +201,32 @@ export default function ParticipantsPage() {
                       <Loader2 className="h-4 w-4 animate-spin text-gray-400" />
                     )}
                   </div>
-                  <p className="text-sm text-gray-400">
-                    Total Participants:{" "}
-                    <span className="text-red-500 font-bold">
-                      {event.allParticipants.length}
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs sm:text-sm text-gray-400">
+                    <span>
+                      Total:{" "}
+                      <span className="text-red-500 font-bold">
+                        {event.allParticipants.length}
+                      </span>
                     </span>
                     {event.teams.length > 0 && (
-                      <span className="ml-3 text-blue-400">
+                      <span className="text-blue-400">
                         • Teams: {event.teams.length}
                       </span>
                     )}
                     {event.individualParticipants.length > 0 && (
-                      <span className="ml-3 text-green-400">
+                      <span className="text-green-400">
                         • Individuals: {event.individualParticipants.length}
                       </span>
                     )}
-                  </p>
+                  </div>
                 </div>
                 <Button
                   onClick={() => downloadExcel(event)}
-                  className="bg-green-600 hover:bg-green-700 text-white gap-2"
+                  className="bg-green-600 hover:bg-green-700 text-white gap-2 w-full sm:w-auto h-9 text-sm"
                   disabled={event.allParticipants.length === 0}
                 >
                   <Download className="h-4 w-4" />
-                  Download Excel
+                  Download
                 </Button>
               </div>
             </CardHeader>
@@ -238,7 +245,10 @@ export default function ParticipantsPage() {
                         </div>
                         <div className="p-4 space-y-3">
                           {[1, 2, 3].map((i) => (
-                            <div key={i} className="flex items-center gap-4 p-3 rounded-lg bg-gray-700/40">
+                            <div
+                              key={i}
+                              className="flex items-center gap-4 p-3 rounded-lg bg-gray-700/40"
+                            >
                               <div className="h-10 w-10 rounded-full bg-gray-700 animate-pulse" />
                               <div className="flex-1 space-y-2">
                                 <div className="flex items-center gap-2">
@@ -261,7 +271,10 @@ export default function ParticipantsPage() {
                     <div className="h-6 w-48 bg-gray-800 rounded animate-pulse" />
                     <div className="space-y-3">
                       {[1, 2].map((i) => (
-                        <div key={i} className="flex items-center gap-4 p-3 rounded-lg bg-gray-800/40">
+                        <div
+                          key={i}
+                          className="flex items-center gap-4 p-3 rounded-lg bg-gray-800/40"
+                        >
                           <div className="h-10 w-10 rounded-full bg-gray-700 animate-pulse" />
                           <div className="flex-1 space-y-2">
                             <div className="flex items-center gap-2">
@@ -305,7 +318,8 @@ export default function ParticipantsPage() {
                                   {team.teamName}
                                 </CardTitle>
                                 <p className="text-xs text-gray-400 mt-1">
-                                  Team Key: {team.teamKey} • {team.participants.length} members
+                                  Team Key: {team.teamKey} •{" "}
+                                  {team.participants.length} members
                                 </p>
                               </div>
                             </div>
@@ -315,51 +329,60 @@ export default function ParticipantsPage() {
                               {team.participants.map((p) => (
                                 <div
                                   key={p._id}
-                                  className="flex items-center gap-4 p-3 rounded-lg bg-gray-700/40 border border-gray-600/30 hover:bg-gray-700/60 transition-all"
+                                  className="flex flex-col sm:flex-row sm:items-center gap-4 p-3 rounded-lg bg-gray-700/40 border border-gray-600/30 hover:bg-gray-700/60 transition-all"
                                 >
-                                  <Avatar className="h-10 w-10 border-2 border-blue-500/20">
-                                    <AvatarImage src={p.profilePhoto} alt={p.name} />
-                                    <AvatarFallback className="bg-blue-700 text-white font-bold">
-                                      {p.name.charAt(0).toUpperCase()}
-                                    </AvatarFallback>
-                                  </Avatar>
-                                  <div className="flex-1 min-w-0">
-                                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-1">
-                                      <div className="flex items-center gap-2">
-                                        <p className="text-white font-semibold truncate">
-                                          {p.name}
+                                  <div className="flex items-center gap-4 w-full sm:w-auto">
+                                    <Avatar className="h-10 w-10 border-2 border-blue-500/20">
+                                      <AvatarImage
+                                        src={p.profilePhoto}
+                                        alt={p.name}
+                                      />
+                                      <AvatarFallback className="bg-blue-700 text-white font-bold">
+                                        {p.name.charAt(0).toUpperCase()}
+                                      </AvatarFallback>
+                                    </Avatar>
+                                    <div className="flex-1 min-w-0">
+                                      <div className="flex flex-col">
+                                        <div className="flex items-center gap-2">
+                                          <p className="text-white font-semibold truncate">
+                                            {p.name}
+                                          </p>
+                                          <Badge
+                                            variant={
+                                              p.role === "Leader"
+                                                ? "destructive"
+                                                : "default"
+                                            }
+                                            className="text-[10px] h-4 px-1"
+                                          >
+                                            {p.role}
+                                          </Badge>
+                                        </div>
+                                        <p className="text-xs text-gray-400 truncate">
+                                          {p.email}
                                         </p>
-                                        <Badge
-                                          variant={p.role === "Leader" ? "destructive" : "default"}
-                                          className="text-xs"
-                                        >
-                                          {p.role}
-                                        </Badge>
                                       </div>
-                                      <p className="text-xs text-gray-400 truncate">
-                                        {p.email}
-                                      </p>
                                     </div>
-                                    <div className="flex flex-wrap items-center gap-x-4 mt-1">
-                                      <span className="text-xs text-gray-500 font-medium">
-                                        Roll:{" "}
-                                        <span className="text-gray-300">
-                                          {p.rollNumber || "N/A"}
-                                        </span>
+                                  </div>
+                                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-1 sm:mt-0 pt-2 sm:pt-0 border-t border-gray-600/30 sm:border-0 w-full sm:w-auto">
+                                    <span className="text-[10px] sm:text-xs text-gray-500 font-medium">
+                                      Roll:{" "}
+                                      <span className="text-gray-300">
+                                        {p.rollNumber || "N/A"}
                                       </span>
-                                      <span className="text-xs text-gray-500 font-medium">
-                                        Phone:{" "}
-                                        <span className="text-gray-300">
-                                          {p.phone || "N/A"}
-                                        </span>
+                                    </span>
+                                    <span className="text-[10px] sm:text-xs text-gray-500 font-medium">
+                                      Phone:{" "}
+                                      <span className="text-gray-300">
+                                        {p.phone || "N/A"}
                                       </span>
-                                      <span className="text-xs text-gray-500 font-medium">
-                                        Year/Dept:{" "}
-                                        <span className="text-gray-300">
-                                          {p.year} {p.department}
-                                        </span>
+                                    </span>
+                                    <span className="text-[10px] sm:text-xs text-gray-500 font-medium">
+                                      Year/Dept:{" "}
+                                      <span className="text-gray-300">
+                                        {p.year} {p.department}
                                       </span>
-                                    </div>
+                                    </span>
                                   </div>
                                 </div>
                               ))}
@@ -375,7 +398,8 @@ export default function ParticipantsPage() {
                     <div className="space-y-4">
                       <h3 className="text-lg font-semibold text-white flex items-center gap-2">
                         <UserIcon className="h-5 w-5 text-green-400" />
-                        Individual Participants ({event.individualParticipants.length})
+                        Individual Participants (
+                        {event.individualParticipants.length})
                       </h3>
                       <div className="flex flex-col gap-3">
                         {event.individualParticipants.map((p) => (

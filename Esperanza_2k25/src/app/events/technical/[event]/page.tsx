@@ -32,7 +32,7 @@ export default function TechnicalEventPage({ params }: any) {
   
   if (!event) {
     return (
-      <div className="min-h-[90vh] mt-[125px] relative flex items-center justify-center">
+      <div className="min-h-[90vh] mt-[80px] relative flex items-center justify-center">
         <div className="animate-pulse text-white">Loading...</div>
       </div>
     );
@@ -43,7 +43,7 @@ export default function TechnicalEventPage({ params }: any) {
   const words = event?.eventName.split(" ").map((w: string) => ({ text: w })) || [{ text: "Event" }];
 
   return (
-    <div className={`mt-[125px] min-h-screen relative ${sedgwick.className}`}>
+    <div className={`mt-[80px] min-h-screen relative ${sedgwick.className}`}>
       <Image
         src={RadialBgRed}
         alt=""

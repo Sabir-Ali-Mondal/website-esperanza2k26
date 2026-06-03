@@ -36,12 +36,12 @@ export default function SettingsPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+      <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
         Settings
       </h1>
 
       <Card className="bg-gray-900/80 border-gray-700">
-        <CardHeader>
+        <CardHeader className="pb-4">
           <CardTitle className="text-xl text-white">General Settings</CardTitle>
         </CardHeader>
         <CardContent>
@@ -51,10 +51,10 @@ export default function SettingsPage() {
             </div>
           ) : (
             <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-lg font-medium text-white">Allow Registrations</h3>
-                  <p className="text-sm text-gray-400">
+              <div className="flex flex-row items-center justify-between gap-4">
+                <div className="flex-1">
+                  <h3 className="text-base sm:text-lg font-medium text-white">Allow Registrations</h3>
+                  <p className="text-xs sm:text-sm text-gray-400">
                     Toggle this to enable or disable event registrations for all users
                   </p>
                 </div>
