@@ -141,7 +141,7 @@ const About = () => {
                   <span className="absolute bottom-0 left-0 w-full h-1 bg-current"></span>
                 </h3>
                 <h3 className={`${sedgwick.className} `}>
-                  MAIL - contact@esperanza.org.in
+                  MAIL - cgectechnical42@gmail.com
                 </h3>
               </div>
 

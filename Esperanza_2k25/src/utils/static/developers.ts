@@ -8,6 +8,7 @@ import ayan from "@/assets/crew/ayan.jpg";
 import arpan from "@/assets/developers/arpan.jpg";
 import sabir from "@/assets/developers/sabir.jpg";
 import tanmoy from "@/assets/developers/tanmoy.jpg";
+import javed from "@/assets/crew/javed.jpg";
 
 export const developers = [
     {
@@ -183,6 +184,24 @@ export const developers = [
       {
         handler : "Instagram",
         link : "https://www.instagram.com/sagu7718?igsh=MTZlcHVudjIzeHZqMw=="
+      }
+    ]
+  },
+  {
+    name: "Seikh Mahammad Javed",
+    avatar: javed,
+    profile: "",
+    role: "website-data-management",
+    year: "3rd",
+    department: "CSE",
+    socials: [
+      {
+        handler: "LinkedIn",
+        link: "https://www.linkedin.com/in/seikh-mahammad-javed-ba29b4215/"
+      },
+      {
+        handler: "Github",
+        link: "https://github.com/itsmejaved"
       }
     ]
   },
