@@ -48,7 +48,7 @@ const About = () => {
       <div
         className={`px-4 sm:px-8 pb-4 sm:pb-6 relative z-10 transition-all duration-300`}
       >
-        <Container></Container>
+        <Container>{null}</Container>
       </div>
 
       {/* More Masonry Gallery */}
